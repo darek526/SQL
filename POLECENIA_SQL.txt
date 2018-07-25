@@ -1,0 +1,36 @@
+http://localhost/quiz/
+
+ZnajdŸ w bazie:
+
+1. Wszystkie kolumny dla pytanie nr 15
+	SELECT * FROM pytania WHERE id=15
+2. Wszystkie pytania, w których poprawn¹ odpowiedzi¹ jest a.
+	SELECT * FROM pytania WHERE answer="a" nazwy, tekst umieszczamy "tekst"
+3. Pytania z roku 2007
+	SELECT * FROM pytania WHERE rok=2007
+	SELECT * FROM pytania WHERE rok="2007" zapis poprawny ale nie u¿ywany nadmiarowy
+4. Pytania z programowania z roku 2009
+	SELECT * FROM pytania WHERE kategoria="programowanie" AND rok=2009
+		AND 1 warunek jest prawdziwy i 2 warunek jest prawdziwy czêœæ wspólna iloczyn, koniunkcja
+	SELECT * FROM pytania WHERE kategoria="programowanie" OR rok=2009 
+		OR albo 1 waunek prawdziwy albo 2 warunek prawdziwy wyœwietli sume, alternatywê 1 i 2 warunku
+5. Tylko treœci pytañ i 4 odpowiedzi z roku 2010
+	SELECT tresc, odpa, odpb, odpc, odpd FROM pytania WHERE rok=2010
+6. Pytania u³o¿one alfabetycznie wg treœci
+	SELECT * FROM pytania ORDER BY tresc ASC sortuje rosn¹co dopuszczalny zapis bez ASC domyœlnie sortuje rosn¹co
+	SELECT * FROM pytania ORDER BY tresc DESC sortuje malej¹co odwrotni od koñca
+
+7. Treœci pytañ o numerach 10-12
+	SELECT tresc FROM pytania WHERE id>=10 AND id<=12
+	SELECT tresc FROM pytania WHERE id BETWEEN 10 AND 12 zapis alternatywny
+8. Pytania zaczynaj¹ce siê od s³ów “Jak”
+	SELECT * FROM pytania WHERE tresc LIKE "Jak%" % dowolny ci¹g znaków po Jak
+9. Pytania zawieraj¹ce frazê "C++"
+	SELECT * FROM pytania WHERE tresc LIKE "%C++%"
+	OR odpa LIKE "%C++%" OR odpb LIKE "%C++%" 
+	OR odpc LIKE "%C++%" OR odpd LIKE "%C++%"
+		tu sprawdza szuka równie¿ s³ów w których jest ci¹g znaków C++ w wszystkich pytaniach
+10. Pytania z programowania oraz systemów operacyjnych i sieci z roku 2009 lub 2012
+	SELECT * FROM pytania WHERE 
+	(kategoria="programowanie" OR kategoria="systemy operacyjne i sieci") 
+	AND (rok=2009 OR rok=2012)
