@@ -1,3 +1,4 @@
+1 lekcja
 http://localhost/quiz/
 
 ZnajdŸ w bazie:
@@ -34,3 +35,150 @@ ZnajdŸ w bazie:
 	SELECT * FROM pytania WHERE 
 	(kategoria="programowanie" OR kategoria="systemy operacyjne i sieci") 
 	AND (rok=2009 OR rok=2012)
+
+2 lekcja
+Po pobranie paczki ze strony http://miroslawzelent.pl/kurs-mysql/zapytania-zlozone-select-wyjecie-danych-z-kilku-tabel/  
+rozpakowujem. Katalog ksiegarnia kopiujemy do:
+C:\xampp\htdocs
+
+Przechodzimy: C:\xampp\
+wybieramy xampp_start jeœli nie mamy po³¹czenia:
+xampp-control.exe sprawdzamy czy Apache i MySQL s¹ w³¹czone, podœwietlone na zielono
+
+W przegl¹darkê wpisujemy:
+http://localhost/phpmyadmin/
+Tworzymy now¹ bazê: 
+Bazy danych
+wpisujemy: ksiegarnia wybieramy:utf8_polish_ci zatwierdzmy: Utwórz
+
+Z listy po lewo wybieramy ksiegarnia, wybieramy zak³adkê Import, wybierz plik. Przechodzimy do C:\xampp\htdocs\ksiegarnia\ksiegarnia.sql nastêpnie wykonaj.
+
+Otwieramy C:\xampp\htdocs\ksiegarnia\zapytanie.txt za pomoc¹ np: brackets, notepad++ lub innym.
+
+W przegl¹darce wpisujemy: localhost/ksiegarnia tu bêd¹ wyœwietlane wyniki
+
+Przechodzimy do C:\xampp\htdocs\ksiegarnia\polecenia.pdf
+
+1. Ksi¹¿ki u³o¿one alfabetycznie.
+	SELECT * FROM ksiazki ORDER BY tytul ASC
+2. ZnjdŸ najdro¿sz¹ ksi¹¿kê.
+	SELECT * FROM ksiazki ORDER BY cena DESC LIMIT 1
+	sortuje ksi¹¿kim po cenie w kolejnoœci odwrotnej czyli od najdro¿szej LIMIT 1 ogranicza iloœæ wyœwitlanych pozycji do 1.
+3. Wszystkie wys³ane zamówienia.
+	SELECT * FROM zamowienia WHERE status="wyslano" wszystkie z tabeli zamowienie  o statusie wyslane.
+4.Wyszukaj wszystkich klientów o nazwisku Rutkowski
+	SELECT * FROM klienci WHERE nazwisko="Rutkowski"
+5. Wyszukaj ksi¹¿ki zawieraj¹ce php w tytule
+	SELECT * FROM ksiazki WHERE tytul LIKE "%php%"
+6. U³ó¿ zamówinia od najnowszego do najstarszego
+	SELECT * FROM zamowienia ORDER BY data DESC
+7. Wyjmij dla wszystkich zamówieñ: imiê i nazwisko klienta zamawiaj¹cego, id zamówienia, datê zamówienia.
+	SELECT klienci.imie, klienci.nazwisko, zamowienia.idzamowienia, zamowienia.data 
+	FROM klienci, zamowienia WHERE klienci.idklienta = zamowienia.idklienta
+		Jeœli wyjmujemy dane z ró¿nych tabel zgodnie z zasad¹ podajemy najpierw SELECT nazwa_tabeli.nazwa_kolumny 
+		(jeœli nazwa_tabeli jest niepowtarzalna w ca³ej bazie to wystarczy wpisaæ tylko nazwe kolumny bez . nazwy_tabel)
+		poŸniej z jakich tabel korzystamyFROM nazwa_tabeli a po WHERE musimy wpisaæ wszystkie relacie  jakie zachodz¹ miêdzy tabelami
+		miêdzy kolumnami o takich samych nazwach(lub o takich samych wartoœciach) ale znajduj¹cych siê w ró¿nych tabelach
+			SELECT nazwa_tabeli1.nazwa_kolumny1, nazwa_tabeli2.nazwa_kolumny2 FROM nazwa_tabeli1, nazwa_tabeli2
+			WHERE nazwa_tabeli1.nazwa_kolumny3 = nazwa_tabeli2.nazwa_kolumny3
+7a	SELECT k.imie, k.nazwisko, z.idzamowienia, z.data 
+	FROM klienci AS k, zamowienia AS z WHERE k.idklienta = z.idklienta
+	AS alias, skrót(przezwisko) nie piszemy za ka¿dym razem ca³ej nazwy tabeli ale po FROM dodajem AS i nazwê, skrót którego u¿yliœmy
+	
+8 Podaj imie i nazwisko klientów którzy kupili ksi¹¿kê o id=2
+	SELECT k.imie, k.nazwisko
+	FROM klienci AS k, zamowienia AS z WHERE z.idksiazki = 2 AND k.idklienta = z.idklienta 
+9. Jakie ksi¹zki (imiê i nazwisko autora) zamówi³ klient nr 2 Jan Nowak
+	SELECT ksiazki.tytul, ksiazki.imieautora, ksiazki.nazwiskoautora 
+	FROM ksiazki, zamowienia WHERE zamowienia.idklienta = 2 AND zamowienia.idksiazki = ksiazki.idksiazki
+	to samo z u¿yciem aliasów:
+	SELECT k.tytul, k.imieautora, k.nazwiskoautora 
+	FROM ksiazki AS k, zamowienia AS z WHERE z.idklienta = 2 AND z.idksiazki = k.idksiazki
+10. Zmówienia dokonan przez osoby o nazwisku Rutkowski u³o¿one wg daty od najpóŸniej dokonanych (imie i nazwisko osoby zamawiaj¹cej, id, datê i status zamówionej ksi¹¿ki)
+	SELECT ks.tytul, kl.imie, kl.nazwisko, zm.idzamowienia, zm.data, zm.status
+	FROM ksiazki AS ks, zamowienia AS zm, klienci AS kl 
+	WHERE kl.nazwisko = "Rutkowski" AND zm.idksiazki = ks.idksiazki AND kl.idklienta = zm.idklienta ORDER BY zm.data DESC
+
+SAMOCHODY
+1.Tylko imiê i nazwisko klienta nr 4.
+	SELECT imie, nazwisko FROM klienci  WHERE idklienta = 2
+		mozna tak bo pracujemy tylko na 1 tabel klienci
+	SELECT kl.imie, kl.nazwisko FROM klienci AS kl WHERE kl.idklienta = 4
+
+2. Wszystkie dane samochodów z rocznika 2010
+	SELECT * FROM auta WHERE rocznik = 2010
+3. Wszystkie dane na temat samochodów marki Ford posiadanych przez nas
+	SELECT * FROM auta  WHERE marka ="ford"
+4. Samochody o numerach w bazie od 2 do 4 w³¹cznie
+	SELECT * FROM auta  WHERE idauta  BETWEEN 2 AND 4
+	SELECT * FROM auta  WHERE idauta >= 2 AND idauta <= 4
+5. Imiona i nazwiska klientów, którzy mieszkaj¹ w Katowicach na ulicy Rolnej(pod dowolnym numerem)
+	SELECT imie, nazwisko FROM klienci WHERE miasto = "Katowice" AND adres LIKE "Rolna%"
+6. Samochód w bazie k(marka, model)  którego ubezpieczenie jest najdro¿sze z wszystkich aut.	
+	SELECT marka,  model FROM auta ORDER BY ubezpieczenie DESC LIMIT 1
+7. samochód(idauta, marka, model) który zosta³ najwczeœniej wypo¿yczony (decyduje datawyp)
+	SELECT a.idauta, a.marka,  a.model FROM wypozyczenia AS wyp, auta AS a  
+	WHERE wyp.idauta = a.idauta ORDER BY wyp.datawyp LIMIT 1 
+8. Imiona i nazwiska osób którer kiedykolwiek wypo¿yczy³y samochód nr 1
+	SELECT kl.imie, kl.nazwisko FROM wypozyczenia AS wyp,klienci AS kl
+	WHERE wyp.idklienta = kl.idklienta AND wyp.idauta = 1
+9. Jakie auta(marka i model)kiedykolwiek wypo¿yczy³a u nas osob nr 4?
+	SELECT au.marka, au.model
+	FROM wypozyczenia AS wyp, auta AS au,  klienci AS kl
+	WHERE kl.idklienta = 4 AND au.idauta = wyp.idauta AND  kl.idklienta = wyp.idklienta 
+10. Jakie auta(marka i model)kiedykolwiek wypo¿yczy³a u nas osoba o nazwisku Pastewniak
+	SELECT au.marka, au.model
+	FROM wypozyczenia AS wyp, auta AS au,  klienci AS kl
+	WHERE au.idauta = wyp.idauta AND  kl.idklienta = wyp.idklienta AND  kl.nazwisko = "Pastewniak"
+
+LEKCJA 3 ksiegarnia.
+UPDATE SET
+Zmiana nazwiska klienta nr 4 w tabeli klienci
+	UPDATE klienci SET nazwisko = "Psikuta"WHERE idklienta=4
+	UPDATE nazwa_tabeli SET nazwa zmienianego atrybutu WHERE dok³adne po³o¿enie zmienianej wartoœci
+		UPDATE zmiana, aktualizacja 
+		SET ustaw, wstaw nowa wartoœæ
+		WHERE tam, gdzie. nie wpisanie WHERE spowoduje zmiane, utrate danych zmienionych tutaj zmianie uleg³y by wszystkie nazwiska.
+Zwiêksz cenê wszystkich ksi¹¿ek zgromadzonych w bazie o 10%
+	UPDATE ksiazki SET cena =cena + 0.1*cena
+	UPDATE ksiazki SET cena =cena*1.1
+		Wykonuje podane polecenie ale wynik bêdzie mia³ 3 miejsca po przecinku, 
+		nie mamy mniejszej wartoœci ni¿ 0,01z³ czyli 1 grosz musimy zaokr¹gliæ do 2 miejsc po przecinku.
+	UPDATE ksiazki SET cena = ROUND (cena + 0.1*cena, 2)
+	ROUND(zmieniana wartoœæ_lub operacja na danych, 2)zaokr¹glenie wyniku do 2 miejsc po przecinku. Pamiêtamy o , przed 2 lub inn¹ cyfr¹ któr¹ wstawimy.
+Zmniejsz cenê najdro¿szej ksi¹¿ki w bazie o 10 z³
+	UPDATE ksiazki SET cena=cena - 10 ORDER BY cena DESC LIMIT 1
+	zmieni cxene tylko dla odwróconej posortowanej  1 wartoœæ, tej najwiêkszej
+
+UPDATE SET WHERE
+Zmieñ imiê i nazwisko klientki Anny Kareniny(idklienta=10) na wartoœæ Joanna Dostojewska
+	UPDATE klienci SET imie="Joanna", nazwisko="Dostojewska" WHERE idklienta=10	
+		poniwe¿ mamy 2 zmieniane wartoœci imiê i nazwisko oddzielamy za pomoæ¹ ,
+		pamiêtamy o podaniu WHERE tzn który wiersz zmieniamy, 
+		inaczej zmienimy wszystkie imiona i nazwiska w ca³ej tabeli na Joanna Dostojewska
+Zmieñ status zamówieñ nr 4 i 5 na wyslano
+	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia=4 OR idzamowienia=5
+	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia BETWEEN 4 AND 5
+	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia>=4 AND idzamowienia<=5
+
+INSERT
+Dodoaj nowego klienta do bazy: Franciszek Janowski z Chorzowa:
+	INSERT INTO klienci VALUES (NULL, "Franciszek", "Janowski", "Chorzów")
+		IINSERT INTO nazwa_tabeli-wstaw rekord,wiersz do tabeli
+		VALUES (NULL, "Franciszek", "Janowski", "Chorzów") podajemy wartoœciw w "" odzielaj¹c , w takiej samej kolejnoœci jak w tabeli.
+			NULL to wartoœæ pusta, tutaj dlatego ¿e komp sam doda automtycznie autonumeracje(AUTO_INCREMENT)
+			inne pozycje musz¹ byæ podane nie mo¿ byæ NULL
+Dodaj nowe zamówienie: Artur Rutkowski kupi³ ksi¹¿ke "HTML%. Tworzenie witryn"
+	INSERT INTO zamowienia (idzamowienia, data, status, idklienta, idksiazki) 
+	VALUES (NULL, "2016-01-01", "oczekiwanie", 7, 3)
+		Jeœli chcemy podaæ kolejnoœæ wpisów inn¹ ni¿ w tabeli nale¿y przed 
+		VALUES dodaæ nowy nawias i tam wpisaæ kolejnoœæ kolumn z prwid³owymi nazwami 
+Wstaw do bazy ksi¹¿kê o tytule: "Symfonia C++" autora o nazwisku "Grêbosz", ale nie wstawiaj jeszcze imienia autora ani ceny ksi¹¿ki
+	INSERT INTO ksiazki (idksiazki, nazwiskoautora, tytul) VALUES (NULL, "Grêbosz", "Symfonia C++")
+		Jeœli nie podajemy wszystkich danych równie¿ wykorzystujemy dodatkowy nawias przed VALUES.
+Dodaj dwóch nowych klientów za pomoc¹ jednego zapytania INSERT
+	INSERT INTO klienci VALUES(NULL, "Marilyn", "Monroe", "Los Angeles"), (NULL, "John", "Wayne", "Los Angeles")
+		Zasad jak przy wpisywani 1 osby tylko wpis odzielamy ,
+Wstawienie nowej osoby z u¿yciem klauzuli SET:
+	INSERT INTO klienci SET idklienta=NULL, imie="Steve", nazwisko="McQueen", miejscowosc="Los Angeles" 
+		po SEt nie u¿ywmy () pamietamy aby podawæ w kolejnoœci takiej ajk w tabeli
