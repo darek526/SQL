@@ -1,37 +1,37 @@
 1 lekcja
 http://localhost/quiz/
 
-ZnajdŸ w bazie:
+ZnajdÅº w bazie:
 
 1. Wszystkie kolumny dla pytanie nr 15
 	SELECT * FROM pytania WHERE id=15
-2. Wszystkie pytania, w których poprawn¹ odpowiedzi¹ jest a.
+2. Wszystkie pytania, w ktÃ³rych poprawnÄ… odpowiedziÄ… jest a.
 	SELECT * FROM pytania WHERE answer="a" nazwy, tekst umieszczamy "tekst"
 3. Pytania z roku 2007
 	SELECT * FROM pytania WHERE rok=2007
-	SELECT * FROM pytania WHERE rok="2007" zapis poprawny ale nie u¿ywany nadmiarowy
+	SELECT * FROM pytania WHERE rok="2007" zapis poprawny ale nie uÅ¼ywany nadmiarowy
 4. Pytania z programowania z roku 2009
 	SELECT * FROM pytania WHERE kategoria="programowanie" AND rok=2009
-		AND 1 warunek jest prawdziwy i 2 warunek jest prawdziwy czêœæ wspólna iloczyn, koniunkcja
+		AND 1 warunek jest prawdziwy i 2 warunek jest prawdziwy czÄ™Å›Ä‡ wspÃ³lna iloczyn, koniunkcja
 	SELECT * FROM pytania WHERE kategoria="programowanie" OR rok=2009 
-		OR albo 1 waunek prawdziwy albo 2 warunek prawdziwy wyœwietli sume, alternatywê 1 i 2 warunku
-5. Tylko treœci pytañ i 4 odpowiedzi z roku 2010
+		OR albo 1 waunek prawdziwy albo 2 warunek prawdziwy wyÅ›wietli sume, alternatywÄ™ 1 i 2 warunku
+5. Tylko treÅ›ci pytaÅ„ i 4 odpowiedzi z roku 2010
 	SELECT tresc, odpa, odpb, odpc, odpd FROM pytania WHERE rok=2010
-6. Pytania u³o¿one alfabetycznie wg treœci
-	SELECT * FROM pytania ORDER BY tresc ASC sortuje rosn¹co dopuszczalny zapis bez ASC domyœlnie sortuje rosn¹co
-	SELECT * FROM pytania ORDER BY tresc DESC sortuje malej¹co odwrotni od koñca
+6. Pytania uÅ‚oÅ¼one alfabetycznie wg treÅ›ci
+	SELECT * FROM pytania ORDER BY tresc ASC sortuje rosnÄ…co dopuszczalny zapis bez ASC domyÅ›lnie sortuje rosnÄ…co
+	SELECT * FROM pytania ORDER BY tresc DESC sortuje malejÄ…co odwrotni od koÅ„ca
 
-7. Treœci pytañ o numerach 10-12
+7. TreÅ›ci pytaÅ„ o numerach 10-12
 	SELECT tresc FROM pytania WHERE id>=10 AND id<=12
 	SELECT tresc FROM pytania WHERE id BETWEEN 10 AND 12 zapis alternatywny
-8. Pytania zaczynaj¹ce siê od s³ów “Jak”
-	SELECT * FROM pytania WHERE tresc LIKE "Jak%" % dowolny ci¹g znaków po Jak
-9. Pytania zawieraj¹ce frazê "C++"
+8. Pytania zaczynajÄ…ce siÄ™ od sÅ‚Ã³w â€œJakâ€
+	SELECT * FROM pytania WHERE tresc LIKE "Jak%" % dowolny ciÄ…g znakÃ³w po Jak
+9. Pytania zawierajÄ…ce frazÄ™ "C++"
 	SELECT * FROM pytania WHERE tresc LIKE "%C++%"
 	OR odpa LIKE "%C++%" OR odpb LIKE "%C++%" 
 	OR odpc LIKE "%C++%" OR odpd LIKE "%C++%"
-		tu sprawdza szuka równie¿ s³ów w których jest ci¹g znaków C++ w wszystkich pytaniach
-10. Pytania z programowania oraz systemów operacyjnych i sieci z roku 2009 lub 2012
+		tu sprawdza szuka rÃ³wnieÅ¼ sÅ‚Ã³w w ktÃ³rych jest ciÄ…g znakÃ³w C++ w wszystkich pytaniach
+10. Pytania z programowania oraz systemÃ³w operacyjnych i sieci z roku 2009 lub 2012
 	SELECT * FROM pytania WHERE 
 	(kategoria="programowanie" OR kategoria="systemy operacyjne i sieci") 
 	AND (rok=2009 OR rok=2012)
@@ -42,91 +42,91 @@ rozpakowujem. Katalog ksiegarnia kopiujemy do:
 C:\xampp\htdocs
 
 Przechodzimy: C:\xampp\
-wybieramy xampp_start jeœli nie mamy po³¹czenia:
-xampp-control.exe sprawdzamy czy Apache i MySQL s¹ w³¹czone, podœwietlone na zielono
+wybieramy xampp_start jeÅ›li nie mamy poÅ‚Ä…czenia:
+xampp-control.exe sprawdzamy czy Apache i MySQL sÄ… wÅ‚Ä…czone, podÅ›wietlone na zielono
 
-W przegl¹darkê wpisujemy:
+W przeglÄ…darkÄ™ wpisujemy:
 http://localhost/phpmyadmin/
-Tworzymy now¹ bazê: 
+Tworzymy nowÄ… bazÄ™: 
 Bazy danych
-wpisujemy: ksiegarnia wybieramy:utf8_polish_ci zatwierdzmy: Utwórz
+wpisujemy: ksiegarnia wybieramy:utf8_polish_ci zatwierdzmy: UtwÃ³rz
 
-Z listy po lewo wybieramy ksiegarnia, wybieramy zak³adkê Import, wybierz plik. Przechodzimy do C:\xampp\htdocs\ksiegarnia\ksiegarnia.sql nastêpnie wykonaj.
+Z listy po lewo wybieramy ksiegarnia, wybieramy zakÅ‚adkÄ™ Import, wybierz plik. Przechodzimy do C:\xampp\htdocs\ksiegarnia\ksiegarnia.sql nastÄ™pnie wykonaj.
 
-Otwieramy C:\xampp\htdocs\ksiegarnia\zapytanie.txt za pomoc¹ np: brackets, notepad++ lub innym.
+Otwieramy C:\xampp\htdocs\ksiegarnia\zapytanie.txt za pomocÄ… np: brackets, notepad++ lub innym.
 
-W przegl¹darce wpisujemy: localhost/ksiegarnia tu bêd¹ wyœwietlane wyniki
+W przeglÄ…darce wpisujemy: localhost/ksiegarnia tu bÄ™dÄ… wyÅ›wietlane wyniki
 
 Przechodzimy do C:\xampp\htdocs\ksiegarnia\polecenia.pdf
 
-1. Ksi¹¿ki u³o¿one alfabetycznie.
+1. KsiÄ…Å¼ki uÅ‚oÅ¼one alfabetycznie.
 	SELECT * FROM ksiazki ORDER BY tytul ASC
-2. ZnjdŸ najdro¿sz¹ ksi¹¿kê.
+2. ZnjdÅº najdroÅ¼szÄ… ksiÄ…Å¼kÄ™.
 	SELECT * FROM ksiazki ORDER BY cena DESC LIMIT 1
-	sortuje ksi¹¿kim po cenie w kolejnoœci odwrotnej czyli od najdro¿szej LIMIT 1 ogranicza iloœæ wyœwitlanych pozycji do 1.
-3. Wszystkie wys³ane zamówienia.
+	sortuje ksiÄ…Å¼kim po cenie w kolejnoÅ›ci odwrotnej czyli od najdroÅ¼szej LIMIT 1 ogranicza iloÅ›Ä‡ wyÅ›witlanych pozycji do 1.
+3. Wszystkie wysÅ‚ane zamÃ³wienia.
 	SELECT * FROM zamowienia WHERE status="wyslano" wszystkie z tabeli zamowienie  o statusie wyslane.
-4.Wyszukaj wszystkich klientów o nazwisku Rutkowski
+4.Wyszukaj wszystkich klientÃ³w o nazwisku Rutkowski
 	SELECT * FROM klienci WHERE nazwisko="Rutkowski"
-5. Wyszukaj ksi¹¿ki zawieraj¹ce php w tytule
+5. Wyszukaj ksiÄ…Å¼ki zawierajÄ…ce php w tytule
 	SELECT * FROM ksiazki WHERE tytul LIKE "%php%"
-6. U³ó¿ zamówinia od najnowszego do najstarszego
+6. UÅ‚Ã³Å¼ zamÃ³winia od najnowszego do najstarszego
 	SELECT * FROM zamowienia ORDER BY data DESC
-7. Wyjmij dla wszystkich zamówieñ: imiê i nazwisko klienta zamawiaj¹cego, id zamówienia, datê zamówienia.
+7. Wyjmij dla wszystkich zamÃ³wieÅ„: imiÄ™ i nazwisko klienta zamawiajÄ…cego, id zamÃ³wienia, datÄ™ zamÃ³wienia.
 	SELECT klienci.imie, klienci.nazwisko, zamowienia.idzamowienia, zamowienia.data 
 	FROM klienci, zamowienia WHERE klienci.idklienta = zamowienia.idklienta
-		Jeœli wyjmujemy dane z ró¿nych tabel zgodnie z zasad¹ podajemy najpierw SELECT nazwa_tabeli.nazwa_kolumny 
-		(jeœli nazwa_tabeli jest niepowtarzalna w ca³ej bazie to wystarczy wpisaæ tylko nazwe kolumny bez . nazwy_tabel)
-		poŸniej z jakich tabel korzystamyFROM nazwa_tabeli a po WHERE musimy wpisaæ wszystkie relacie  jakie zachodz¹ miêdzy tabelami
-		miêdzy kolumnami o takich samych nazwach(lub o takich samych wartoœciach) ale znajduj¹cych siê w ró¿nych tabelach
+		JeÅ›li wyjmujemy dane z rÃ³Å¼nych tabel zgodnie z zasadÄ… podajemy najpierw SELECT nazwa_tabeli.nazwa_kolumny 
+		(jeÅ›li nazwa_tabeli jest niepowtarzalna w caÅ‚ej bazie to wystarczy wpisaÄ‡ tylko nazwe kolumny bez . nazwy_tabel)
+		poÅºniej z jakich tabel korzystamyFROM nazwa_tabeli a po WHERE musimy wpisaÄ‡ wszystkie relacie  jakie zachodzÄ… miÄ™dzy tabelami
+		miÄ™dzy kolumnami o takich samych nazwach(lub o takich samych wartoÅ›ciach) ale znajdujÄ…cych siÄ™ w rÃ³Å¼nych tabelach
 			SELECT nazwa_tabeli1.nazwa_kolumny1, nazwa_tabeli2.nazwa_kolumny2 FROM nazwa_tabeli1, nazwa_tabeli2
 			WHERE nazwa_tabeli1.nazwa_kolumny3 = nazwa_tabeli2.nazwa_kolumny3
 7a	SELECT k.imie, k.nazwisko, z.idzamowienia, z.data 
 	FROM klienci AS k, zamowienia AS z WHERE k.idklienta = z.idklienta
-	AS alias, skrót(przezwisko) nie piszemy za ka¿dym razem ca³ej nazwy tabeli ale po FROM dodajem AS i nazwê, skrót którego u¿yliœmy
+	AS alias, skrÃ³t(przezwisko) nie piszemy za kaÅ¼dym razem caÅ‚ej nazwy tabeli ale po FROM dodajem AS i nazwÄ™, skrÃ³t ktÃ³rego uÅ¼yliÅ›my
 	
-8 Podaj imie i nazwisko klientów którzy kupili ksi¹¿kê o id=2
+8 Podaj imie i nazwisko klientÃ³w ktÃ³rzy kupili ksiÄ…Å¼kÄ™ o id=2
 	SELECT k.imie, k.nazwisko
 	FROM klienci AS k, zamowienia AS z WHERE z.idksiazki = 2 AND k.idklienta = z.idklienta 
-9. Jakie ksi¹zki (imiê i nazwisko autora) zamówi³ klient nr 2 Jan Nowak
+9. Jakie ksiÄ…zki (imiÄ™ i nazwisko autora) zamÃ³wiÅ‚ klient nr 2 Jan Nowak
 	SELECT ksiazki.tytul, ksiazki.imieautora, ksiazki.nazwiskoautora 
 	FROM ksiazki, zamowienia WHERE zamowienia.idklienta = 2 AND zamowienia.idksiazki = ksiazki.idksiazki
-	to samo z u¿yciem aliasów:
+	to samo z uÅ¼yciem aliasÃ³w:
 	SELECT k.tytul, k.imieautora, k.nazwiskoautora 
 	FROM ksiazki AS k, zamowienia AS z WHERE z.idklienta = 2 AND z.idksiazki = k.idksiazki
-10. Zmówienia dokonan przez osoby o nazwisku Rutkowski u³o¿one wg daty od najpóŸniej dokonanych (imie i nazwisko osoby zamawiaj¹cej, id, datê i status zamówionej ksi¹¿ki)
+10. ZmÃ³wienia dokonan przez osoby o nazwisku Rutkowski uÅ‚oÅ¼one wg daty od najpÃ³Åºniej dokonanych (imie i nazwisko osoby zamawiajÄ…cej, id, datÄ™ i status zamÃ³wionej ksiÄ…Å¼ki)
 	SELECT ks.tytul, kl.imie, kl.nazwisko, zm.idzamowienia, zm.data, zm.status
 	FROM ksiazki AS ks, zamowienia AS zm, klienci AS kl 
 	WHERE kl.nazwisko = "Rutkowski" AND zm.idksiazki = ks.idksiazki AND kl.idklienta = zm.idklienta ORDER BY zm.data DESC
 
 SAMOCHODY
-1.Tylko imiê i nazwisko klienta nr 4.
+1.Tylko imiÄ™ i nazwisko klienta nr 4.
 	SELECT imie, nazwisko FROM klienci  WHERE idklienta = 2
 		mozna tak bo pracujemy tylko na 1 tabel klienci
 	SELECT kl.imie, kl.nazwisko FROM klienci AS kl WHERE kl.idklienta = 4
 
-2. Wszystkie dane samochodów z rocznika 2010
+2. Wszystkie dane samochodÃ³w z rocznika 2010
 	SELECT * FROM auta WHERE rocznik = 2010
-3. Wszystkie dane na temat samochodów marki Ford posiadanych przez nas
+3. Wszystkie dane na temat samochodÃ³w marki Ford posiadanych przez nas
 	SELECT * FROM auta  WHERE marka ="ford"
-4. Samochody o numerach w bazie od 2 do 4 w³¹cznie
+4. Samochody o numerach w bazie od 2 do 4 wÅ‚Ä…cznie
 	SELECT * FROM auta  WHERE idauta  BETWEEN 2 AND 4
 	SELECT * FROM auta  WHERE idauta >= 2 AND idauta <= 4
-5. Imiona i nazwiska klientów, którzy mieszkaj¹ w Katowicach na ulicy Rolnej(pod dowolnym numerem)
+5. Imiona i nazwiska klientÃ³w, ktÃ³rzy mieszkajÄ… w Katowicach na ulicy Rolnej(pod dowolnym numerem)
 	SELECT imie, nazwisko FROM klienci WHERE miasto = "Katowice" AND adres LIKE "Rolna%"
-6. Samochód w bazie k(marka, model)  którego ubezpieczenie jest najdro¿sze z wszystkich aut.	
+6. SamochÃ³d w bazie k(marka, model)  ktÃ³rego ubezpieczenie jest najdroÅ¼sze z wszystkich aut.	
 	SELECT marka,  model FROM auta ORDER BY ubezpieczenie DESC LIMIT 1
-7. samochód(idauta, marka, model) który zosta³ najwczeœniej wypo¿yczony (decyduje datawyp)
+7. samochÃ³d(idauta, marka, model) ktÃ³ry zostaÅ‚ najwczeÅ›niej wypoÅ¼yczony (decyduje datawyp)
 	SELECT a.idauta, a.marka,  a.model FROM wypozyczenia AS wyp, auta AS a  
 	WHERE wyp.idauta = a.idauta ORDER BY wyp.datawyp LIMIT 1 
-8. Imiona i nazwiska osób którer kiedykolwiek wypo¿yczy³y samochód nr 1
+8. Imiona i nazwiska osÃ³b ktÃ³rer kiedykolwiek wypoÅ¼yczyÅ‚y samochÃ³d nr 1
 	SELECT kl.imie, kl.nazwisko FROM wypozyczenia AS wyp,klienci AS kl
 	WHERE wyp.idklienta = kl.idklienta AND wyp.idauta = 1
-9. Jakie auta(marka i model)kiedykolwiek wypo¿yczy³a u nas osob nr 4?
+9. Jakie auta(marka i model)kiedykolwiek wypoÅ¼yczyÅ‚a u nas osob nr 4?
 	SELECT au.marka, au.model
 	FROM wypozyczenia AS wyp, auta AS au,  klienci AS kl
 	WHERE kl.idklienta = 4 AND au.idauta = wyp.idauta AND  kl.idklienta = wyp.idklienta 
-10. Jakie auta(marka i model)kiedykolwiek wypo¿yczy³a u nas osoba o nazwisku Pastewniak
+10. Jakie auta(marka i model)kiedykolwiek wypoÅ¼yczyÅ‚a u nas osoba o nazwisku Pastewniak
 	SELECT au.marka, au.model
 	FROM wypozyczenia AS wyp, auta AS au,  klienci AS kl
 	WHERE au.idauta = wyp.idauta AND  kl.idklienta = wyp.idklienta AND  kl.nazwisko = "Pastewniak"
@@ -135,50 +135,80 @@ LEKCJA 3 ksiegarnia.
 UPDATE SET
 Zmiana nazwiska klienta nr 4 w tabeli klienci
 	UPDATE klienci SET nazwisko = "Psikuta"WHERE idklienta=4
-	UPDATE nazwa_tabeli SET nazwa zmienianego atrybutu WHERE dok³adne po³o¿enie zmienianej wartoœci
+	UPDATE nazwa_tabeli SET nazwa zmienianego atrybutu WHERE dokÅ‚adne poÅ‚oÅ¼enie zmienianej wartoÅ›ci
 		UPDATE zmiana, aktualizacja 
-		SET ustaw, wstaw nowa wartoœæ
-		WHERE tam, gdzie. nie wpisanie WHERE spowoduje zmiane, utrate danych zmienionych tutaj zmianie uleg³y by wszystkie nazwiska.
-Zwiêksz cenê wszystkich ksi¹¿ek zgromadzonych w bazie o 10%
+		SET ustaw, wstaw nowa wartoÅ›Ä‡
+		WHERE tam, gdzie. nie wpisanie WHERE spowoduje zmiane, utrate danych zmienionych tutaj zmianie ulegÅ‚y by wszystkie nazwiska.
+ZwiÄ™ksz cenÄ™ wszystkich ksiÄ…Å¼ek zgromadzonych w bazie o 10%
 	UPDATE ksiazki SET cena =cena + 0.1*cena
 	UPDATE ksiazki SET cena =cena*1.1
-		Wykonuje podane polecenie ale wynik bêdzie mia³ 3 miejsca po przecinku, 
-		nie mamy mniejszej wartoœci ni¿ 0,01z³ czyli 1 grosz musimy zaokr¹gliæ do 2 miejsc po przecinku.
+		Wykonuje podane polecenie ale wynik bÄ™dzie miaÅ‚ 3 miejsca po przecinku, 
+		nie mamy mniejszej wartoÅ›ci niÅ¼ 0,01zÅ‚ czyli 1 grosz musimy zaokrÄ…gliÄ‡ do 2 miejsc po przecinku.
 	UPDATE ksiazki SET cena = ROUND (cena + 0.1*cena, 2)
-	ROUND(zmieniana wartoœæ_lub operacja na danych, 2)zaokr¹glenie wyniku do 2 miejsc po przecinku. Pamiêtamy o , przed 2 lub inn¹ cyfr¹ któr¹ wstawimy.
-Zmniejsz cenê najdro¿szej ksi¹¿ki w bazie o 10 z³
+	ROUND(zmieniana wartoÅ›Ä‡_lub operacja na danych, 2)zaokrÄ…glenie wyniku do 2 miejsc po przecinku. PamiÄ™tamy o , przed 2 lub innÄ… cyfrÄ… ktÃ³rÄ… wstawimy.
+Zmniejsz cenÄ™ najdroÅ¼szej ksiÄ…Å¼ki w bazie o 10 zÅ‚
 	UPDATE ksiazki SET cena=cena - 10 ORDER BY cena DESC LIMIT 1
-	zmieni cxene tylko dla odwróconej posortowanej  1 wartoœæ, tej najwiêkszej
+	zmieni cxene tylko dla odwrÃ³conej posortowanej  1 wartoÅ›Ä‡, tej najwiÄ™kszej
 
 UPDATE SET WHERE
-Zmieñ imiê i nazwisko klientki Anny Kareniny(idklienta=10) na wartoœæ Joanna Dostojewska
+ZmieÅ„ imiÄ™ i nazwisko klientki Anny Kareniny(idklienta=10) na wartoÅ›Ä‡ Joanna Dostojewska
 	UPDATE klienci SET imie="Joanna", nazwisko="Dostojewska" WHERE idklienta=10	
-		poniwe¿ mamy 2 zmieniane wartoœci imiê i nazwisko oddzielamy za pomoæ¹ ,
-		pamiêtamy o podaniu WHERE tzn który wiersz zmieniamy, 
-		inaczej zmienimy wszystkie imiona i nazwiska w ca³ej tabeli na Joanna Dostojewska
-Zmieñ status zamówieñ nr 4 i 5 na wyslano
+		poniweÅ¼ mamy 2 zmieniane wartoÅ›ci imiÄ™ i nazwisko oddzielamy za pomoÄ‡Ä… ,
+		pamiÄ™tamy o podaniu WHERE tzn ktÃ³ry wiersz zmieniamy, 
+		inaczej zmienimy wszystkie imiona i nazwiska w caÅ‚ej tabeli na Joanna Dostojewska
+ZmieÅ„ status zamÃ³wieÅ„ nr 4 i 5 na wyslano
 	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia=4 OR idzamowienia=5
 	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia BETWEEN 4 AND 5
 	UPDATE zamowienia SET status="wyslano" WHERE idzamowienia>=4 AND idzamowienia<=5
 
 INSERT
 Dodoaj nowego klienta do bazy: Franciszek Janowski z Chorzowa:
-	INSERT INTO klienci VALUES (NULL, "Franciszek", "Janowski", "Chorzów")
+	INSERT INTO klienci VALUES (NULL, "Franciszek", "Janowski", "ChorzÃ³w")
 		IINSERT INTO nazwa_tabeli-wstaw rekord,wiersz do tabeli
-		VALUES (NULL, "Franciszek", "Janowski", "Chorzów") podajemy wartoœciw w "" odzielaj¹c , w takiej samej kolejnoœci jak w tabeli.
-			NULL to wartoœæ pusta, tutaj dlatego ¿e komp sam doda automtycznie autonumeracje(AUTO_INCREMENT)
-			inne pozycje musz¹ byæ podane nie mo¿ byæ NULL
-Dodaj nowe zamówienie: Artur Rutkowski kupi³ ksi¹¿ke "HTML%. Tworzenie witryn"
+		VALUES (NULL, "Franciszek", "Janowski", "ChorzÃ³w") podajemy wartoÅ›ciw w "" odzielajÄ…c , w takiej samej kolejnoÅ›ci jak w tabeli.
+			NULL to wartoÅ›Ä‡ pusta, tutaj dlatego Å¼e komp sam doda automtycznie autonumeracje(AUTO_INCREMENT)
+			inne pozycje muszÄ… byÄ‡ podane nie moÅ¼ byÄ‡ NULL
+Dodaj nowe zamÃ³wienie: Artur Rutkowski kupiÅ‚ ksiÄ…Å¼ke "HTML%. Tworzenie witryn"
 	INSERT INTO zamowienia (idzamowienia, data, status, idklienta, idksiazki) 
 	VALUES (NULL, "2016-01-01", "oczekiwanie", 7, 3)
-		Jeœli chcemy podaæ kolejnoœæ wpisów inn¹ ni¿ w tabeli nale¿y przed 
-		VALUES dodaæ nowy nawias i tam wpisaæ kolejnoœæ kolumn z prwid³owymi nazwami 
-Wstaw do bazy ksi¹¿kê o tytule: "Symfonia C++" autora o nazwisku "Grêbosz", ale nie wstawiaj jeszcze imienia autora ani ceny ksi¹¿ki
-	INSERT INTO ksiazki (idksiazki, nazwiskoautora, tytul) VALUES (NULL, "Grêbosz", "Symfonia C++")
-		Jeœli nie podajemy wszystkich danych równie¿ wykorzystujemy dodatkowy nawias przed VALUES.
-Dodaj dwóch nowych klientów za pomoc¹ jednego zapytania INSERT
+		JeÅ›li chcemy podaÄ‡ kolejnoÅ›Ä‡ wpisÃ³w innÄ… niÅ¼ w tabeli naleÅ¼y przed 
+		VALUES dodaÄ‡ nowy nawias i tam wpisaÄ‡ kolejnoÅ›Ä‡ kolumn z prwidÅ‚owymi nazwami 
+Wstaw do bazy ksiÄ…Å¼kÄ™ o tytule: "Symfonia C++" autora o nazwisku "GrÄ™bosz", ale nie wstawiaj jeszcze imienia autora ani ceny ksiÄ…Å¼ki
+	INSERT INTO ksiazki (idksiazki, nazwiskoautora, tytul) VALUES (NULL, "GrÄ™bosz", "Symfonia C++")
+		JeÅ›li nie podajemy wszystkich danych rÃ³wnieÅ¼ wykorzystujemy dodatkowy nawias przed VALUES.
+Dodaj dwÃ³ch nowych klientÃ³w za pomocÄ… jednego zapytania INSERT
 	INSERT INTO klienci VALUES(NULL, "Marilyn", "Monroe", "Los Angeles"), (NULL, "John", "Wayne", "Los Angeles")
 		Zasad jak przy wpisywani 1 osby tylko wpis odzielamy ,
-Wstawienie nowej osoby z u¿yciem klauzuli SET:
+Wstawienie nowej osoby z uÅ¼yciem klauzuli SET:
 	INSERT INTO klienci SET idklienta=NULL, imie="Steve", nazwisko="McQueen", miejscowosc="Los Angeles" 
-		po SEt nie u¿ywmy () pamietamy aby podawæ w kolejnoœci takiej ajk w tabeli
+		po SEt nie uÅ¼ywmy () pamietamy aby podawÄ‡ w kolejnoÅ›ci takiej ajk w tabeli
+KASOWANIE REKORDÃ“W BAZ DANYCH		
+Skasowanie nazwiska klienta nr 3 WÃ³jcik	
+	UPDATE klienci SET nazwisko = "" WHERE idklienta = 3
+		 Formalnie UPDATE to nie usuniÄ™cie nazwiska ale zmiana wartoÅ›ci na "" tzw.  pusty Å‚aÅ„cuch
+
+DELETE kasowanie 1 lub wielu REKORDÃ“W wierszy
+DELETE FROM nazwa_tabeli WHERE rekord_do_usuniÄ™cia lub_okreÅ›lony_warunek
+	DELETE FROM nazwa_tabeli
+	Brak klauzuli WHERE oznacz usuniÄ™cie WSZYSTKICH rekordÃ³w z wybranej tabeli zostanie pusta tabela
+W tabeli zamowienia skasowanie zamowienia nr 2
+	 DELETE FROM zamowienia WHERE idzamowienia = 2
+		Wykasuje caÅ‚e zamÃ³winie nr 2. 
+		w tabeli zamÃ³wienia po zamÃ³wieniu nr 1 bÄ™dzie zamÃ³wienie nr 3
+W tabeli klienci usuniecie 5 ostatnich rekordÃ³w:
+	DELETE FROM klienci ORDER BY idklienta DESC LIMIT 5
+		ORDER BY idklienta Sortujemy po idklienta 
+		DESC  odwracamy kolejnoÅ›Ä‡  
+		LIMIT 5 to informcja aby usunÄ…Ä‡ jedynie 5 pierwszych wierszy(rekordÃ³w)
+TRUNCATE skasowanie WSZYSTKICH REKORDÃ“W tabeli duÅ¼o szybsze od DELETE FROM nazwa_tabeli,
+poniewaÅ¼ nie usuwa rekordÃ³w kolejno, lecz zamist tego tabela jest najpierw usuniÄ™ta (zdropowana), a potem utworzona samoczynie na nowo(CREATE)
+	TRANCATE TABLE nazwa_tabeli
+DROP kasowanie STRUKTURY w bazie danych lub caÅ‚ej bazy danych:
+Skasowanie caÅ‚Ä™j zawartoÅ›Ä‡i tabeli i jej struktury z naszej bazy danych
+	DROP TABLE nazwa_tabeli np:
+		DROP TABLE klienci Skasuje caÅ‚Ä… tabele klienci. 
+		JeÅ›li po skasowaniu tabeli powtÃ³rzymy jeszcze raz DROP TABLE klienci lub wpiszemy nazwÄ™ tabeli ktÃ³rej nie ma
+		 w naszej bazie danych bÄ™dzie to bÅ‚Ä…d aby siÄ™ tego ustrzec stosujemy:
+			DROP TABLE IF EXISTS nazwa_tabeli		
+Skasowanie caÅ‚ej bazy danych
+	DROP DATABASE nazwa_bazy
