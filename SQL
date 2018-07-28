@@ -24,6 +24,6 @@ Skasowanie całęj zawartośći tabeli i jej struktury z naszej bazy danych
 		DROP TABLE klienci Skasuje całą tabele klienci. 
 		Jeśli po skasowaniu tabeli powtórzymy jeszcze raz DROP TABLE klienci lub wpiszemy nazwę tabeli której nie ma
 		 w naszej bazie danych będzie to błąd aby się tego ustrzec stosujemy:
-	DROP TABLE IF EXISTS nazwa_tabeli
-		
+			DROP TABLE IF EXISTS nazwa_tabeli		
 Skasowanie całej bazy danych
+	DROP DATABASE nazwa_bazy
