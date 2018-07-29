@@ -1,0 +1,92 @@
+http://sol.gfxile.net/g3/
+    1.  WELCOME
+    2.  SELECT 24*60*60
+    3.  SELECT x, y, z FROM stars
+    4.  SELECT starid, x, y, z FROM stars WHERE x > 0 AND starid < 100 ORDER BY y ASC
+    5. SELECT SUM(y/x) FROM stars
+    6. DELETE FROM hilight; 
+       SELECT * FROM stars 
+       WHERE starid>5000 and starid<15000 AND class=7;
+       INSERT INTO hilight VALUES(5007);
+       INSERT INTO hilight VALUES(5048);
+       INSERT INTO hilight VALUES(5050);
+       INSERT INTO hilight VALUES(5068);
+       INSERT INTO hilight VALUES(5075);
+    7. INSERT INTO hilight
+       SELECT starid FROM stars WHERE starid>10000 and starid<11000;
+    8. BEGIN;
+       DELETE FROM stars WHERE starid<10000
+    9. BEGIN;
+       UPDATE stars SET x=z, z=x WHERE starid>10000 AND starid<15000
+    10. BEGIN;
+       INSERT INTO hilight SELECT DISTINCT stars.starid  FROM stars, planets, moons 
+       WHERE stars.starid > 20000  AND stars.starid=planets.starid 
+       AND planets.planetid = moons.planetid  AND moons.orbitdistance > 3000
+    11. BEGIN;
+       INSERT INTO hilight SELECT stars.starid FROM stars, planets, 
+       (SELECT MAX(orbitdistance) AS mo FROM planets) 
+       WHERE planets.orbitdistance = mo AND planets.starid = stars.starid;
+    12. SELECT Stars.name AS starname, (Stars.class + 7) * Stars.intensity * 1000000 AS startemp,  Planets.name AS planetname, ((Stars.class + 7) * Stars.intensity * 1000000) - (50 * Planets.orbitDistance) AS planettemp FROM Stars LEFT JOIN Planets
+       ON Planets.starId = Stars.starId WHERE Stars.starId > 500 AND Stars.starId < 600
+    13. CREATE VIEW numbers 
+       AS SELECT 3 AS three, intensity, x 
+       FROM stars ORDER BY x DESC;
+    14. CREATE TABLE colors (color INTEGER PRIMARY KEY, description TEXT);
+       INSERT INTO colors (color, description) VALUES (-3,'a');
+       INSERT INTO colors (color, description) VALUES (-2,'b');
+       INSERT INTO colors (color, description) VALUES (-1,'a');
+       INSERT INTO colors (color, description) VALUES (0,'c');
+       INSERT INTO colors (color, description) VALUES (1,'d');
+       INSERT INTO colors (color, description) VALUES (2,'e');
+       INSERT INTO colors (color, description) VALUES (3,'f');
+       INSERT INTO colors (color, description) VALUES (4,'g');
+       INSERT INTO colors (color, description) VALUES (5,'h');
+       INSERT INTO colors (color, description) VALUES (6,'i');
+       INSERT INTO colors (color, description) VALUES (7,'j');
+       INSERT INTO colors (color, description) VALUES (8,'k');
+       INSERT INTO colors (color, description) VALUES (9,'l');
+       INSERT INTO colors (color, description) VALUES (10,'m');
+    15. CREATE TABLE quotes (id INTEGER PRIMARY KEY, quote TEXT NOT NULL);
+       INSERT INTO quotes (id, quote) 
+       VALUES (1, "A human being, what is a human being? Everything and nothing. Through the power of thought it can mirror everything it experiences. Through memory and knowledge it becomes a microcosm, carrying the world within itself. A mirror of things, a mirror of facts. Each human being becomes a little universe within the universe!");
+       INSERT INTO quotes (id, quote) 
+       VALUES (2, "A great thought begins by seeing something differently, with a shift of the mind's eye");
+    16. CREATE TABLE alter_test (id INTEGER PRIMARY KEY, data TEXT NOT NULL); \
+       INSERT INTO alter_test (data) VALUES ('Foo'); 
+       INSERT INTO alter_test (data) VALUES ('Bar'); 
+       INSERT INTO alter_test (data) VALUES ('Baz');
+       ALTER TABLE alter_test RENAME TO my_table;
+       ALTER TABLE my_table ADD COLUMN moredata TEXT;
+       SELECT * FROM my_table 
+       UPDATE my_table SET moredata="I have been updated with just one query!" WHERE id>0 and id<4;
+       SELECT * FROM my_table;
+    17. SELECT stars.starid AS starid, 
+       COUNT(planets.planetid) + COUNT(moons.planetid) AS orbitals 
+       FROM planets, stars, moons WHERE stars.starid=planets.starid 
+       AND planets.planetid=moons.planetid GROUP BY stars.starid;
+       17B
+       SELECT stars.starid, stars.name, COUNT(planets.starid+moons.planetid) as orbitals
+       FROM stars INNER JOIN planets ON stars.starid = planets.starid
+       INNER JOIN moons ON planets.planetid=moons.planetid
+       GROUP BY stars.starid ORDER BY orbitals DESC;
+    18. SELECT starid FROM planets INTERSECT SELECT 3*starid FROM planets
+       INTERSECT SELECT starid FROM planets EXCEPT SELECT 2 *starid FROM planets
+
+    1. SELECT ..
+    2. SELECT .. FROM ..
+    3. SELECT .. FROM .. WHERE .. ORDER BY .. DESC
+    4. MAX(), MIN(), COUNT(), AVG(), SUM(), NULL
+    5. INSERT INTO .. VALUES ..
+    6. INSERT INTO .. SELECT ..
+    7. Transactions, DELETE FROM .. WHERE ..
+    8. UPDATE .. SET .. WHERE ..
+    9. SELECT FROM table1, table2.., DISTINCT
+    10. SELECT .. FROM (SELECT .. FROM ..)
+    11. SELECT FROM .. JOIN ..
+    12. CREATE VIEW, DROP VIEW
+    13. CREATE TABLE, DROP TABLE
+    14. Constraints
+    15. ALTER TABLE
+    16. SELECT .. GROUP BY .. HAVING ..
+    17. UNION, UNION ALL, INTERSECT, EXCEPT
+    18. Triggers
