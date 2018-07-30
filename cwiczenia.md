@@ -1,8 +1,6 @@
 1 Policz wsystkie osoby z tabeli osoby  
   SELECT COUNT(*)  FROM osoba
-
 2 Podaj imie matki osoby o nazwisku Makota 
-  
   SELECT mama FROM osoba WHERE nazwisko="Makota"
 3 Ustal czy Julia posiada kota o imieniu Bonifacy
   SELECT *FROM posiadanie WHERE idzwierzecia=4 AND imiewlasciciela= "Julia"
