@@ -1,1 +1,10 @@
+SELECT COUNT(*)  FROM osoba policz wsystkie osoby z tabeli osoby
+Podaj imie matki osoby o nazwisku Makota SELECT mama FROM osoba WHERE nazwisko="Makota"
+Ustal czy Julia posiada kota o imieniu Bonifacy
+Podaj datę śmierci zwierzęcia o imieniu Dumbo
+Podaj imiona zwierząt które zostały przygarnięte w 2001r.
+Podaj gatunek zwierzęcia które zmarło w 2002r
+Ustal 
 
+
+DB Browser for SQLite
