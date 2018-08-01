@@ -20,10 +20,19 @@
   SELECT gatunek, COUNT(*)   FROM zwierze WHERE gatunek = "kot"
 10 Dodaj do tabeli osoby swoje imie i nazwisko
   INSERT INTO osoba VALUES ("Dariusz", "Soborski",NULL, NULL) 
-11 Dodaj do tabeli osoby imiona rodziców  osoby Ewa Pobożna .
-12
-13
-14
-15
+11 Dodaj do tabeli osoby imiona rodziców  osoby Ewa Pobożna.
+  SELECT * FROM osoba; UPDATE osoba SET mama = 'Ewa' WHERE nazwisko = 'Pobozna'
+12 Wyświetl  identyfikatory i nazwy wszystkich zwierząt. i Posortuj wyniki malejąco wg. Identyfikatora.
+		SELECT idzwierzecia, gatunek FROM zwierze ORDER BY idzwierzecia DESC
+13 - Stwórz nową tabelę o nazwie adres, z dowolnymi kolumnami
+	CREATE TABLE adres (miasto, ulica, nr_domu, nr_mieszkania)
+14- Wypełnij tabele adres dowolnymi wartościami
+  INSERT INTO adres VALUES ("Plock", "Polna", "23", "7"), ("Kutno", "Kwiatowa", 2, NULL), ("Olsztyn", "Ogrodowa", 22, 21)
+15 -Usuń tabele adres
+	DROP TABLE adres
+16 6.	Podaj imiona zwierząt, które zostały przygarnięte w 2001r.
+select zwierze.imie
+from posiadanie,zwierze
+where zwierze.idzwierzecia = posiadanie.idzwierzecia and posiadanie.dataprzygarniecia between'01-jan-2001' and '31-dec-2001'
 
 DB Browser for SQLite
