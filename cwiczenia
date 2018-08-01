@@ -1,16 +1,29 @@
-1 Policz wsystkie osoby z tabeli osoby  
+1 Wyświetl zawartość tabeli zwierze
+  SELCT * FROM zwierze
+2 Policz wsystkie osoby z tabeli osoby  
   SELECT COUNT(*)  FROM osoba
-2 Podaj imie matki osoby o nazwisku Makota 
+3 Podaj imie matki osoby o nazwisku Makota 
   SELECT mama FROM osoba WHERE nazwisko="Makota"
-3 Ustal czy Julia posiada kota o imieniu Bonifacy
-  SELECT *FROM posiadanie WHERE idzwierzecia=4 AND imiewlasciciela= "Julia"
-4 Podaj datę śmierci zwierzęcia o imieniu Dumbo
+4 Ustal czy Julia posiada kota o imieniu Bonifacy
+  SELECT * FROM posiadanie WHERE idzwierzecia=4 AND imiewlasciciela= "Julia"
+  SELECT imiewlasciciela, imie FROM posiadanie, zwierze WHERE imie= "Bonifacy" AND imiewlasciciela= "Julia" AND gatunek = "kot"
+5 Podaj datę śmierci zwierzęcia o imieniu Dumbo
   SELECT datasmierci FROM zwierze WHERE imie = "Dumbo" 
-5 Podaj imiona zwierząt które zostały przygarnięte w 2001r.
-6 Podaj gatunek zwierzęcia które zmarło w 2002r
-7 Ustal imię zwierzęcia które jest żółwiem
-8 Ile kotów znajduje się w tabeli zwierzę
-9 Dodaj do tabeli osoby swoje imie i nazwisko
-10
-11
+6 Podaj imiona zwierząt   o id z przedziału 4-6
+  SELECT imie FROM zwierze WHERE idzwierzecia BETWEEN 4 AND 6
+7 Podaj imiona zwierząt   o id większym od 5
+  SELECT imie FROM zwierze WHERE idzwierzecia > 5
+8 Ustal imię zwierzęcia które jest żółwiem
+  SELECT imie FROM zwierze WHERE gatunek = "zolw"
+9 Ile kotów znajduje się w tabeli zwierzę
+  SELECT COUNT(*)   FROM zwierze WHERE gatunek = "kot"
+  SELECT gatunek, COUNT(*)   FROM zwierze WHERE gatunek = "kot"
+10 Dodaj do tabeli osoby swoje imie i nazwisko
+  INSERT INTO osoba VALUES ("Dariusz", "Soborski",NULL, NULL) 
+11 Dodaj do tabeli osoby imiona rodziców  osoby Ewa Pobożna .
+12
+13
+14
+15
+
 DB Browser for SQLite
