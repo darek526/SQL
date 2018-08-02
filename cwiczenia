@@ -29,7 +29,9 @@
 14- Wypełnij tabele adres dowolnymi wartościami
   INSERT INTO adres VALUES ("Plock", "Polna", "23", "7"), ("Kutno", "Kwiatowa", 2, NULL), ("Olsztyn", "Ogrodowa", 22, 21)
 15 -Usuń tabele adres
-	DROP TABLE adres
+	DROP TABLE adres u suwa tabele i zawartość
+	DELETE TABLE adres usuwa zawartość tabeli powolne
+	TRUNCATE TABLE adres usuwa zawartość tabeli szybko
 16 6.	Podaj imiona zwierząt, które zostały przygarnięte w 2001r.
 select zwierze.imie
 from posiadanie,zwierze
